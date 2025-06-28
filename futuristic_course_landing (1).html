@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Web Dev & AI - Future-Ready Skills</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 25%, #000011 50%, #001122 75%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .glow {
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(0, 100, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00ffff;
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+            box-shadow: 0 0 10px #00ffff;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ff00);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 40px;
+            color: #b0b0b0;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 0, 110, 0.4);
+            border-color: #00ffff;
+        }
+
+        .cta-button:hover:before {
+            left: 100%;
+        }
+
+        .features {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 20, 40, 0.3) 50%, transparent 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff006e, #8338ec, #3a86ff);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 255, 255, 0.2);
+            border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        .feature-card:hover:before {
+            transform: translateX(0);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #00ffff;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #00ffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stats {
+            padding: 100px 20px;
+            background: radial-gradient(ellipse at center, rgba(255, 0, 110, 0.1) 0%, transparent 70%);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: countUp 2s ease-out;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ff006e;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .pricing {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(0, 50, 100, 0.2) 0%, rgba(50, 0, 100, 0.2) 100%);
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 500px;
+            margin: 60px auto 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.03);
+            border-color: #00ffff;
+            box-shadow: 0 30px 60px rgba(0, 255, 255, 0.2);
+        }
+
+        .price {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #00ffff;
+            margin: 20px 0;
+        }
+
+        .price-label {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+        }
+
+        .testimonials {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, rgba(255, 0, 110, 0.05) 0%, rgba(131, 56, 236, 0.05) 50%, rgba(58, 134, 255, 0.05) 100%);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff006e, #8338ec, #3a86ff);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(255, 0, 110, 0.2);
+            border-color: rgba(255, 0, 110, 0.3);
+        }
+
+        .testimonial-card:hover:before {
+            transform: translateX(0);
+        }
+
+        .testimonial-content {
+            margin-bottom: 30px;
+        }
+
+        .testimonial-content p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #e0e0e0;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff006e, #8338ec);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .author-avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+        .author-info h4 {
+            color: #ffffff;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .author-info span {
+            color: #00ffff;
+            font-size: 0.9rem;
+        }
+
+        .benefits {
+            padding: 100px 20px;
+            background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.05) 0%, transparent 70%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.15);
+            border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
+        }
+
+        .benefit-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .benefit-item p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer {
+            padding: 60px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+            
+            .hero-content {
+                padding: 0 15px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .testimonial-card {
+                padding: 30px 25px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .benefit-item {
+                padding: 25px 20px;
+            }
+        }
+
+        .tech-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tech-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tech-icon:hover {
+            background: rgba(0, 255, 255, 0.2);
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+        }
+        /* Proof Notification Styles */
+.proof-notification {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
+  max-width: 360px;
+  margin: auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  z-index: 9999;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.proof-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.proof-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  margin-right: 14px;
+}
+
+.proof-details strong {
+  font-size: 15px;
+  color: #000;
+}
+
+.proof-details .proof-action {
+  font-size: 13px;
+  margin: 2px 0;
+  color: #444;
+}
+
+.proof-details .proof-time {
+  font-size: 12px;
+  color: #888;
+}
+
+.verified {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: inherit;
+}
+.verified img {
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.verified a {
+  text-decoration: none;
+  color: #2196f3 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+}
+.proof-close {
+  cursor: pointer;
+  font-size: 20px;
+  color: #aaa;
+  margin-left: 10px;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.proof-notification {
+  animation: fadeInUp 0.5s ease-in-out;
+}
+    </style>
+</head>
+<body>
+    <div class="floating-particles" id="particles"></div>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Future Code Masters</h1>
+            <p>Master Web Development & AI in the Next-Gen Digital Revolution</p>
+            <a href="#pricing" class="cta-button">Start Your Journey</a>
+            
+            <div class="tech-icons">
+                <div class="tech-icon">⚛️</div>
+                <div class="tech-icon">🤖</div>
+                <div class="tech-icon">🚀</div>
+                <div class="tech-icon">💎</div>
+                <div class="tech-icon">🔥</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Revolutionary Learning Experience</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🚀</span>
+                    <h3>Cutting-Edge Web Dev</h3>
+                    <p>Master React, Next.js, TypeScript, and modern frameworks that power tomorrow's web. Build responsive, lightning-fast applications with the latest technologies.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🧠</span>
+                    <h3>AI Integration Mastery</h3>
+                    <p>Learn to integrate GPT models, build AI-powered applications, and create intelligent user experiences that adapt and learn from user behavior.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3>Real-World Projects</h3>
+                    <p>Build a portfolio of impressive projects including AI chatbots like chatgpt (try our example <a href="https://www.nilbite.store/p/nilz-ai_16.html" target="_blank">chatbot</a>), smart web apps, and interactive dashboards that showcase your skills to employers.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3>Industry Mentorship</h3>
+                    <p>Get personalized guidance from senior developers and AI engineers working at top tech companies. 1-on-1 sessions and code reviews included.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏆</span>
+                    <h3>Career Acceleration</h3>
+                    <p>Job placement assistance, interview preparation, and resume optimization. Our graduates work at Google, Microsoft, Tesla, and leading AI startups.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🌐</span>
+                    <h3>Global Community</h3>
+                    <p>Join an exclusive network of future-ready developers. Collaborate on open-source projects and build connections that last a lifetime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title">Proven Success</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">872</span>
+                    <span>Graduates Placed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3272</span>
+                    <span>Total enrolled students</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span>Job Placement Assistance</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">12</span>
+                    <span>Weeks to Transform</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Success Stories</h2>
+            <div class="testimonials-grid">
+<div class="testimonial-card">
+  <div class="testimonial-content">
+    <p>"I joined this course while doing my Computer Science degree, and it gave me exactly the practical skills my college lacked. I learned to build websites and AI tools step by step, and the certificate really boosted my confidence and my resume."</p>
+  </div>
+<div class="testimonial-author">
+    <div class="author-avatar">
+      <img src="https://i.ibb.co/CsNfh85k/1d8f48c6f67594c5f12562374d92537e.jpg" alt="Sarah Chen">
+    </div>
+    <div class="author-info">
+      <h4>Muhammed Anshif P</h4>
+      <span>Web Developer @ Nexora Technologies</span>
+    </div>
+  </div>
+</div>
+
+<div class="testimonial-card">
+  <div class="testimonial-content">
+    <p>"As an engineering student, I wanted skills that actually get me hired. This program helped me learn web development and how to make AI chatbots — all from my phone! I finished it along with my degree and got my certificate too."</p>
+  </div>
+<div class="testimonial-author">
+    <div class="author-avatar">
+      <img src="https://i.ibb.co/kgXB8JFz/d8aade822e7ca2b84fdfc44d480db53a.jpg" alt="Nafia">
+    </div>
+    <div class="author-info">
+      <h4>Nafia A</h4>
+      <span>Junior AI Developer @ BluePeak Systems</span>
+    </div>
+  </div>
+</div>
+
+<div class="testimonial-card">
+  <div class="testimonial-content">
+    <p>"I took this course during my final year of college, and it completely changed my path. The real projects I built helped me get freelance clients, and the certificate added real value to my LinkedIn profile."</p>
+  </div>
+<div class="testimonial-author">
+    <div class="author-avatar">
+      <img src="https://i.ibb.co/WNY1TVBn/41d178b752419fff7af2db3687dbec3e.jpg" alt="Shifana sherin">
+    </div>
+    <div class="author-info">
+      <h4>Shifana sherin ck</h4>
+      <span>Freelance Web & AI Developer @ OrbitEdge</span>
+    </div>
+  </div>
+</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">What You Get</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🏆</div>
+                    <h3>Industry-Recognized Certificate</h3>
+                    <p>Earn a prestigious certificate that's valued by top tech companies worldwide. Digital and physical copies included.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🌍</div>
+                    <h3>Multi-Language Support</h3>
+                    <p>Learn in your preferred language - English, Spanish, French, German, Japanese, Chinese, Hindi, and more. AI-powered translation included.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">⏰</div>
+                    <h3>Flexible Schedule</h3>
+                    <p>Self-paced learning with 24/7 access. Study at your own rhythm, whether you're a night owl or early bird.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">💻</div>
+                    <h3>Cloud Development Environment</h3>
+                    <p>Code from anywhere with our cloud-based IDE. No setup required - start coding in seconds on any device.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎓</div>
+                    <h3>Lifetime Updates</h3>
+                    <p>Stay current with evolving technology. Get free access to all future course updates and new modules forever.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🤝</div>
+                    <h3>Alumni Network</h3>
+                    <p>Join an exclusive community of 5,000+ successful graduates. Network, collaborate, and find job opportunities.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">📱</div>
+                    <h3>Mobile Learning App</h3>
+                    <p>Continue learning on-the-go with our native mobile app. Download lessons for offline access during commutes.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔐</div>
+                    <h3>Job Guarantee Program</h3>
+                    <p>Get hired within 6 months or receive a full refund. We're so confident in our program, we guarantee your success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="pricing" id="pricing">
+    <div class="container">
+        <h2 class="section-title">Investment in Your Future</h2>
+        <div class="pricing-card">
+            <h3>Complete Mastery Program</h3>
+            
+            <!-- Original price with strikethrough -->
+            <div style="text-decoration: line-through; color: #ff006e; font-size: 1.5rem; margin-bottom: -10px;">
+                ₹2349
+            </div>
+            
+            <!-- Discounted price -->
+            <div class="price">₹499</div>
+            
+            <!-- Discount badge -->
+            <div style="background: #ff006e; color: white; padding: 5px 15px; border-radius: 20px; 
+                        display: inline-block; margin-bottom: 15px; font-weight: bold;">
+                SAVE $500
+            </div>
+            
+            <!-- Countdown timer -->
+            <div id="countdown-timer" style="margin: 20px 0; padding: 15px; background: rgba(255,0,110,0.1); 
+                                          border-radius: 10px; border: 1px solid #ff006e;">
+                <div style="font-size: 0.9rem; color: #b0b0b0; margin-bottom: 5px;">OFFER ENDS IN:</div>
+                <div style="display: flex; justify-content: center; gap: 15px; font-size: 1.3rem;">
+                    <span id="days">00</span>d : 
+                    <span id="hours">00</span>h : 
+                    <span id="minutes">00</span>m : 
+                    <span id="seconds">00</span>s
+                </div>
+            </div>
+            
+            <div class="price-label">One-time payment • Lifetime access</div>
+            <p>Everything you need to become a sought-after Web Developer & AI Engineer. Includes all courses, projects, mentorship, and career support.</p>
+            <a href="https://payments.cashfree.com/forms/yuretsam-iua-bewbewbHew" class="cta-button" style="margin-top: 30px;">Secure Your Spot</a>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #888;">UPI Payment plans available</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Countdown timer until July 1
+    function updateCountdown() {
+        const now = new Date();
+        const targetDate = new Date('July 1, 2025 00:00:00');
+        const difference = targetDate - now;
+        
+        if (difference <= 0) {
+            document.getElementById('countdown-timer').innerHTML = 
+                '<div style="color: #ff006e; font-weight: bold;">OFFER HAS ENDED</div>';
+            return;
+        }
+        
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+        
+        document.getElementById('days').textContent = days.toString().padStart(2, '0');
+        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    // Update every second
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+</script>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Future Code Masters. Shaping Tomorrow's Developers Today.</p>
+            <p style="margin-top: 10px; color: #666;">Contact: hello@futurecodemasters.com | Follow us @FutureCodeMasters</p>
+        </div>
+        </footer>
+  <!-- Proof Popup -->
+  <div class="proof-notification" id="proof-notification" style="display: none;">
+    <div class="proof-left">
+      <img src="https://i.ibb.co/9HFHjWgN/download-6.png" alt="logo" class="proof-avatar" />
+      <div class="proof-details">
+        <strong id="proof-name">Amin from Switzerland</strong>
+        <p class="proof-action">Recently Enrolled Code Mastery Course</p>
+        <p class="proof-time">11 hours ago <span class="verified">
+          <img src="https://cdn-icons-png.flaticon.com/512/1828/1828640.png" alt="verified" />
+          <a href="https://proof.com" target="_blank">verified by Proof</a>
+        </span></p>
+      </div>
+    </div>
+    <div class="proof-close" onclick="hideProof()">×</div>
+  </div>
+
+<script>
+const proofNames = [
+  "Neha from Kochi",
+  "Ali from Malappuram",
+  "Marcus from Thiruvananthapuram",
+  "Divya from Kollam",
+  "Lucia from Kozhikode",
+  "Harshit from Thrissur",
+  "Aya from Alappuzha",
+  "Kavya from Kottayam",
+  "Muhammed suhail from Kasaragod",
+  "Sneha from Kannur",
+  "Daniel from Pathanamthitta",
+  "Aisha ck from Idukki",
+  "Sundar from Palakkad",
+  "Nadia from Wayanad",
+  "Pranav k from Ernakulam",
+  "Yara rahman from Kanhangad",
+  "Ibrahim razak p from Varkala",
+  "Kiara from Muvattupuzha",
+  "Haroon from Perinthalmanna",
+  "Nikita from Changanassery",
+  "Jithin from Pala",
+  "Aarav from Kunnamkulam",
+  "Elena from Thalassery",
+  "Ritika from Attingal",
+  "Tom from Kalpetta",
+  "Shreya from Nedumangad",
+  "Bilal from Manjeri",
+  "Reyansh from Koduvally",
+  "Linda from Adoor",
+  "Tanvi from Tirur",
+  "Yuvan from Cherthala",
+  "Nora from Nilambur",
+  "Sahil from Payyannur",
+  "Tanya from Vaikom",
+  "Krish from Thodupuzha",
+  "Maya from Kayamkulam",
+  "Imran from Paravur",
+  "Lina from Aluva",
+  "Aditya from Guruvayur",
+  "Isha from Mavelikkara"
+];
+  let shownNames = [];
+
+  function getRandomName() {
+    if (shownNames.length === proofNames.length) {
+      shownNames = []; // reset when all names have been shown
+    }
+
+    let randomName;
+    do {
+      randomName = proofNames[Math.floor(Math.random() * proofNames.length)];
+    } while (shownNames.includes(randomName));
+
+    shownNames.push(randomName);
+    return randomName;
+  }
+
+  function getRandomTime() {
+    const minutes = Math.floor(Math.random() * 11); // 0–10 minutes
+    if (minutes === 0) return "just now";
+    if (minutes === 1) return "1 minute ago";
+    return `${minutes} minutes ago`;
+  }
+
+  const notification = document.getElementById("proof-notification");
+  const nameField = document.getElementById("proof-name");
+  const timeField = document.querySelector(".proof-time");
+
+  function showProof() {
+    const randomName = getRandomName();
+    const randomTime = getRandomTime();
+
+    nameField.textContent = randomName;
+    timeField.innerHTML = `${randomTime} <span class="verified">
+      <img src="https://cdn-icons-png.flaticon.com/512/1828/1828640.png" alt="verified" />
+      <a href="https://useproof.com/verified?utm_source=verified&utm_campaign=https%3A%2F%2Fwww.nilbite.online%2F&utm_term=VUpyZk26dbQkyGC92cCwhkezOxC2&utm_content=AN" target="_blank">verified by Proof</a>
+    </span>`;
+
+    notification.style.display = "flex";
+
+    setTimeout(() => {
+      notification.style.display = "none";
+      setTimeout(showProof, 10000); // wait 10 sec for next
+    }, 5000); // show for 5 sec
+  }
+
+  function hideProof() {
+    notification.style.display = "none";
+  }
+
+  window.onload = () => setTimeout(showProof, 2000);
+</script>
+</body>
+</html>
